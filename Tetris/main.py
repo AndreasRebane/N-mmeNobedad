@@ -26,6 +26,7 @@ And Optimize :(
 blocks_in_row = 10 # the actual grid dimentions (default size = 10x20)
 blocks_in_collumn = 24
 block_size = 30 # edge length in pixels - determines the size of the application window
+gameover = False
 
 window_height = blocks_in_collumn * block_size
 window_width = blocks_in_row * block_size
@@ -173,7 +174,7 @@ def merge_lists():
     
 
 def update(): # So inefficient that it's embarrassing - looking through every cell like 3 times in 1 cycle X(
-    global waiting_for_keyboard_input, spawn_next_block, right_movement_is_blocked, left_movement_is_blocked, keeping_track_of_blocks, falling_counter
+    global waiting_for_keyboard_input, spawn_next_block, right_movement_is_blocked, left_movement_is_blocked, keeping_track_of_blocks, falling_counter, gameover
     
     canvas.delete("all")
     canvas.create_rectangle(0, 4*block_size, blocks_in_row*block_size, 0, fill="gray10", outline="gray80")
@@ -207,6 +208,7 @@ def update(): # So inefficient that it's embarrassing - looking through every ce
                 draw_rectangle(i, u)
                 if i <= 4:
                     print("Game Over! wah wah")
+                    gameover = True    
 
             if(keeping_track_of_blocks[i][u] == 1):
                 draw_rectangle(i, u)
@@ -223,7 +225,7 @@ def update(): # So inefficient that it's embarrassing - looking through every ce
 
 
     
-while True: # will add an ending condition later
+while !gameover: # will add an ending condition later
     time.sleep(0.05)
     
 
