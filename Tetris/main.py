@@ -225,7 +225,7 @@ def update(): # So inefficient that it's embarrassing - looking through every ce
 
 
     
-while !gameover:
+while not gameover:
     time.sleep(0.05)
 
     window.bind("<Key>", keyboard_input)
