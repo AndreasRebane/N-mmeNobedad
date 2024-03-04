@@ -14,9 +14,6 @@ sorry in advance..
 
 To do:
 Add a small delay between when blocks hit the floor and when they can't be moved anymore
-Fix blocks being able to rotate out of the border
-Add a title screen
-Add an ending screen
 Add a score system
 Add an options menu - for changing gamesize, gamespeed and window resolution
 """
@@ -26,6 +23,9 @@ blocks_in_row = 10 #the game grid dimentions
 blocks_in_collumn = 24
 block_size = 30 # determines the size of the application window
 gameover = False
+rows_destroyed = 0
+blocks_deployed = 0
+windowtype = "titlescreen"
 
 window_height = blocks_in_collumn * block_size
 window_width = blocks_in_row * block_size
@@ -129,7 +129,7 @@ def left_right_movement(direction):
             
 
 def draw_blocks():
-    global waiting_for_keyboard_input, left_movement_is_blocked, right_movement_is_blocked, gameover
+    global waiting_for_keyboard_input, left_movement_is_blocked, right_movement_is_blocked, gameover, windowtype
 
     left_movement_is_blocked = False
     right_movement_is_blocked = False
@@ -139,8 +139,9 @@ def draw_blocks():
             if(keeping_track_of_static_blocks[i][u] == 1):
                 draw_rectangle(i, u)
                 if i <= 4:
-                    print("Game Over! wah wah")
                     gameover = True
+                    windowtype = "titlescreen"
+                    waiting_for_keyboard_input = True
                 
 
     for i in range(len(block)):
@@ -154,13 +155,13 @@ def draw_blocks():
                 if block_row + u+1 >= blocks_in_row or keeping_track_of_static_blocks[block_collumn+i][block_row+u+1] == 1:
                     right_movement_is_blocked = True
 
-                if(block_collumn + i+1 >= blocks_in_collumn or keeping_track_of_static_blocks[block_collumn+i+1][block_row+u] == 1):
+                if(block_collumn + i + 1 >= blocks_in_collumn or keeping_track_of_static_blocks[block_collumn+i+1][block_row+u] == 1):
                     merge_lists()
                     waiting_for_keyboard_input = True
 
 
 def rotate_block(direction):
-    global block
+    global block, block_row
 
     temp_list = list(map(list, block))
     
@@ -173,11 +174,27 @@ def rotate_block(direction):
             for u in range(len(block[i])):
                 temp_list[i][u] = block[u][len(block[i])-i-1]
 
-    block = list(map(list, temp_list))
+    x = 0
+    if(block_row < 0):
+        x = 1
+    elif(block_row + u > len(keeping_track_of_static_blocks[0])-1):
+        x = -1
+
+
+    can_rotate = True
+    for i in range(len(temp_list)):
+        for u in range(len(temp_list[i])):
+            if(temp_list[i][u] == 1 and keeping_track_of_static_blocks[block_collumn + i][block_row + u + x] == 1):
+                can_rotate = False
+                x = 0
+                
+    block_row += x
+    if can_rotate:
+        block = list(map(list, temp_list))
 
 
 def destroy_rows():
-    global keeping_track_of_static_blocks
+    global keeping_track_of_static_blocks, rows_destroyed
       
     for i in range(blocks_in_collumn):
         count = 0
@@ -189,7 +206,7 @@ def destroy_rows():
         if count == blocks_in_row:
             del keeping_track_of_static_blocks[i]
             keeping_track_of_static_blocks = [empty_row[:]] + keeping_track_of_static_blocks #Can't put into words how much shit forgetting this caused --> [:]
-
+            rows_destroyed += 1
     
 def keyboard_input(event):
     global waiting_for_keyboard_input, spawn_next_block, falling_counter
@@ -226,7 +243,7 @@ def merge_lists():
    
 
 def update():
-    global spawn_next_block, falling_counter, block, block_row, block_collumn
+    global spawn_next_block, falling_counter, block, block_row, block_collumn, blocks_deployed
     
     canvas.delete("all")
     canvas.create_rectangle(0, 4*block_size, blocks_in_row*block_size, 0, fill="gray10", outline="gray80")
@@ -240,6 +257,7 @@ def update():
 
     if spawn_next_block == True:
         spawn_next_block = False
+        blocks_deployed += 1
         block = choice(blocks[:]) #picks a random block
         startpoint = randint(0, blocks_in_row-len(block[0]))
         block_row = startpoint
@@ -247,12 +265,62 @@ def update():
 
     draw_blocks()
 
+
+def switch_window():
+    global windowtype
+
+    if blocks_deployed > 0:
+        exit()
+        
+    windowtype = "tetris"
+
+def titlescreen():
+    global text, button
+    window.unbind("<Key>")
+
+    text = Text(canvas, height = window_height, width = window_width, bg="gray10", fg="white")
+
+    button = Button(canvas, text ="Hello", command = switch_window)
+    button.configure(width=20, height=7, bg="red", fg="white")
+
+    if blocks_deployed > 0:
+        text.insert(INSERT, "\nWell played! \n")
+        text.insert(INSERT, "You used: " + str(blocks_deployed) + " pieces\n")
+        text.insert(INSERT, "You destroyed: " + str(rows_destroyed) + " row(s)\n")
+        button.configure(text="PRESS HERE TO QUIT")
+    else:
+        text.insert(INSERT, "\nWelcome to Tetris! \n\n\n\n")
+        text.insert(INSERT, "Here's how to play: \n\n")
+        text.insert(INSERT, "-Deploy pieces by pressing SPACE \n")
+        text.insert(INSERT, "-Move left or right with arrow keys \n")
+        text.insert(INSERT, "-Use 'a' & 'd' to rotate \n")
+        text.insert(INSERT, "-Hold downwards arrow to fall faster \n\n")
+        button.configure(text="PRESS HERE TO START")
     
-while not gameover:
+    button.place(x=window_width/3-20, y=window_height/2)
+    text.pack()
+    
+
+def gamescreen():
+    text.pack_forget()
+    button.destroy()
+    
+    window.bind("<Key>", keyboard_input)
+    update()
+
+while True: #bad habbit...
     time.sleep(0.05)
 
-    window.bind("<Key>", keyboard_input)
+    if gameover:
+        windowtype = "titlescreen"
+        gameover = False
 
-    if not waiting_for_keyboard_input:
-        update()
+    if windowtype == "titlescreen":
+        waiting_for_keyboard_input = True
+        titlescreen()
+    elif windowtype == "tetris" or not waiting_for_keyboard_input:
+        gamescreen()
+
+    windowtype = ""
     window.update()
+
