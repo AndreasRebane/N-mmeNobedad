@@ -37,6 +37,8 @@ namespace Weather_Prediction
             // Don't extract content if request failed
             if (!hasWeatherData) return;
             weatherData = responseMessage.Content.ReadAsStringAsync().Result.ToLower();
+
+            datePicker.MinDate = DateTime.Today;
         }
 
         private void getPredictionButton_Click(object sender, EventArgs e)
@@ -56,9 +58,12 @@ namespace Weather_Prediction
 
                 dateTime = (String)datePicker.Value.Year.ToString() + "-" + month + "-" + day;
 
+                String locationData = locationChooser.Text.ToLower();
+                if (locationData == "tallinn-harku") locationData = "harku";
+
                 // Get Temperature
                 int dateIndex = weatherData.IndexOf(dateTime);
-                int locationIndex = weatherData.IndexOf(locationChooser.Text.ToLower(), dateIndex);
+                int locationIndex = weatherData.IndexOf(locationData, dateIndex);
                 int locationEndIndex = weatherData.IndexOf("</place>", locationIndex);
                 temperature = weatherData.Substring(weatherData.IndexOf("tempmin>", locationIndex) + 8, weatherData.IndexOf("tempmin>", locationIndex) + 16);
                 temperature = temperature.Substring(0, temperature.IndexOf("tempmin") - 2) + " C";

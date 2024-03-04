@@ -9,3 +9,14 @@ C:\Users\user\Documents\Visual Studio Projects\Weather Prediction\obj\Debug\Weat
 C:\Users\user\Documents\Visual Studio Projects\Weather Prediction\obj\Debug\Weather Prediction.exe
 C:\Users\user\Documents\Visual Studio Projects\Weather Prediction\obj\Debug\Weather Prediction.pdb
 C:\Users\user\Documents\Visual Studio Projects\Weather Prediction\obj\Debug\Weather_Prediction.Form1.resources
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\bin\Debug\Weather Prediction.exe.config
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\bin\Debug\Weather Prediction.exe
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\bin\Debug\Weather Prediction.pdb
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather_Prediction.Form1.resources
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather_Prediction.Properties.Resources.resources
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.csproj.GenerateResource.cache
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.exe
+C:\Users\user\source\repos\N-mmeNobedad\weather_prediction\Weather Prediction\obj\Debug\Weather Prediction.pdb
