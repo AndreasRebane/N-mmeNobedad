@@ -7,9 +7,15 @@ import pickle
 import time
 
 class Ticket():
-    type = None
-    price = None
-    destination = None
+    def __init__(self) -> None:
+        self.type = input("Enter ticket type:")
+        time.sleep(.4)
+        self.price = input("Enter ticket price:")
+        time.sleep(.4)
+        self.description = input("Enter ticket description:")
+        time.sleep(.4)
+        self.route = input("Enter route, where ticket can be bought (all route stops):")
+        time.sleep(.4)
 
 class User(ABC):
     personal_tickets = None
@@ -44,6 +50,7 @@ class Ticket_manager:
     regular_users = []
     admin_users = []
     availabe_tickets = []
+    routes = {}
     current_user = None
     close_program = False
     spacer = 120
@@ -91,6 +98,9 @@ class Ticket_manager:
             try:
                 if self.current_user.admin_clearance == "admin":
                     print("Welcome Admin")
+                    print("-4: Create new ticket")
+                    print("-3: Create new route")
+                    print("-2: Delete Ticket manager (PERMANENT!)")
                     print("-1: Create admin account")
             except:
                 pass
@@ -150,7 +160,13 @@ class Ticket_manager:
             try:
                 if self.current_user.admin_clearance == "admin":
                     if choice == -1:
-                        self.create_admin
+                        self.create_admin()
+                    if choice == -2:
+                        self.delete_tm()
+                    if choice == -3:
+                        self.create_route()
+                    if choice == -4:
+                        self.create_ticket()
             except:
                 time.sleep(.6)
                 print("Option not found!")
@@ -236,7 +252,6 @@ class Ticket_manager:
                             if input("Would you like to continue (yes/no):") == "no":
                                 break
 
-
     def logout(self):
         self.current_user = None
 
@@ -270,11 +285,37 @@ class Ticket_manager:
             else:
                 print("No admin accounts found.")
 
+    def create_route(self):
+        print("Creating new route...")
+        route_name = input("Enter route name:")
+        route_destinations = input("Enter route stops (Tapa Türi Tallinn...):").split()
+        self.routes[route_name] = route_destinations 
+
     def buy_ticket(self):
-        pass
+        print("Available routes and their stops:")
+        for route, stops in self.routes.items():
+            print(f"{route}: {stops}")
+        selected_route = input("Enter route:")
+        for ticket in self.availabe_tickets:
+            if ticket.route == selected_route:
+                print("="*self.spacer)
+                print(f"Ticket type: {ticket.type}")
+                print(f"Ticket price: {ticket.price}")
+                print(f"Ticket description: {ticket.description}")
+                print(f"Ticket route: {ticket.route}")
+                if input("\nDo you want to buy this ticket (yes/no):") == "yes":
+                    self.current_user.personal_tickets.append(ticket)
+
+    def create_ticket(self):
+        self.availabe_tickets.append(Ticket())
 
     def verify_ticket(self):
         pass
+        #enter stop
+        #copare stop to ticket destinations
+
+    def send_ticket_email(self):
+        pass # Availabe in future updates
 
     def close(self):
         self.logout()
@@ -287,10 +328,3 @@ class Ticket_manager:
 
         
 Ticket_manager()
-
-# Add route system
-# Add automatic email
-# Tamper proof system
-    
-# Admin needs to be able to add new tickets
-# Admin special login
