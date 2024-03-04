@@ -117,7 +117,7 @@ class Ticket_manager:
             time.sleep(.4)
             print("4: Buy ticket")
             time.sleep(.4)
-            print("5: Verify ticket")
+            print("5: Verify if you have ticket for a route")
             time.sleep(.4)
             print("6: Check current account")
             time.sleep(.4)
@@ -151,7 +151,7 @@ class Ticket_manager:
         elif choice == 4:
             self.buy_ticket()
         elif choice == 5:
-            self.verify_ticket()
+            self.verify_tickets()
         elif choice == 6:
             self.check_current_account()
         elif choice == 7:
@@ -219,7 +219,6 @@ class Ticket_manager:
         else:
             create_user()
             
-
     def login(self):
         self.check_accounts()
         print("\n="*self.spacer)
@@ -305,17 +304,23 @@ class Ticket_manager:
                 print(f"Ticket route: {ticket.route}")
                 if input("\nDo you want to buy this ticket (yes/no):") == "yes":
                     self.current_user.personal_tickets.append(ticket)
+                    print("Ticket successfully bought!")
+        print("\nIf no tickets were displayd then no tickets existed for the selected route.")
 
     def create_ticket(self):
         self.availabe_tickets.append(Ticket())
 
-    def verify_ticket(self):
-        pass
-        #enter stop
-        #copare stop to ticket destinations
-
-    def send_ticket_email(self):
-        pass # Availabe in future updates
+    def verify_tickets(self):
+        print("="*self.spacer)
+        print("Available routes and their stops:")
+        for route, stops in self.routes.items():
+            print(f"{route}: {stops}")
+        route = input("Enter route for which you want to see if you have a ticket:")
+        for ticket in self.current_user:
+            if ticket.route == route:
+                print("Yay you have a ticket for this route!")
+                if input("Continue searching (yes/no):") == "no":
+                    break
 
     def close(self):
         self.logout()
