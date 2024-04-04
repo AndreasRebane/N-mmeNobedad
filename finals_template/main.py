@@ -2,7 +2,7 @@ from tkinter import *
 from time import sleep
 from math import floor, ceil # need on ümardamiseks kasulikud
 from random import randint, choice # choice on väga kasulik, kui on vaja valida suvaline element listist
-from ReadOrWrite import readFromFile, WriteToFile # readFromFile(line_number) // writeToFile(text, line_number)
+from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) // writeToFile(text, line_number)
 
 
 windowHeight = 500
@@ -51,7 +51,7 @@ def draw(): # EVERTHING that needs to be drawn goes in here
 
 
 
-while (stopped == False): # stop is just some arbitrary game-end condition
+while (stopped == False): # stopped is just an arbitrary ending condition
 
     sleep(0.1)
 
