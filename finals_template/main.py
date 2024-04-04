@@ -2,6 +2,7 @@ from tkinter import *
 from time import sleep
 from math import floor, ceil # need on ümardamiseks kasulikud
 from random import randint, choice # choice on väga kasulik, kui on vaja valida suvaline element listist
+from ReadOrWrite import readFromFile, WriteToFile # readFromFile(line_number) // writeToFile(text, line_number)
 
 
 windowHeight = 500
