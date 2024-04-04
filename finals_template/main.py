@@ -21,7 +21,7 @@ canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
 canvas.grid()
 
 def on_close():
-    global stop 
+    global stopped
     stopped = True
 window.protocol("WM_DELETE_WINDOW", on_close) #Added this so closing the window doesn't crash the program
 
