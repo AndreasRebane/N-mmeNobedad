@@ -1,47 +1,23 @@
-from tkinter import *
 from time import sleep
 from math import floor, ceil # need on ümardamiseks kasulikud
 from random import randint, choice # choice on väga kasulik, kui on vaja valida suvaline element listist
-from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) // writeToFile(text, line_number)
+from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / writeToFile(text, line_number)
+from createWindow import draw_circle, draw_rectangle, draw_text, window, canvas
 
 
-windowHeight = 500
-windowWidth = 500
 
 stopped = False # the ending condition for the whole program
 
 
 
-# Initializing tkinter window-------------------------------------
-
-window=Tk()
-window.title("Window")
-window.geometry(f"{windowWidth}x{windowHeight}")
-canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
-canvas.grid()
-
-def on_close():
-    global stopped
-    stopped = True
-window.protocol("WM_DELETE_WINDOW", on_close) #Added this so closing the window doesn't crash the program
-
-def draw_rectangle(x, y, width, height, color): # X, Y --> UPPER-LEFT corner of the rectangle
-    canvas.create_rectangle(x, y, (x+width), (y+height), fill=color, outline="black")
-
-def draw_circle(x, y, radius, color): # X, Y --> CENTER of the circle
-    canvas.create_oval(x-radius, y-radius, x+radius, y+radius, fill=color)
-
-def draw_text(x, y, t, fontSize): # X, Y --> CENTER coordinates   t --> your text
-    canvas.create_text(x, y, text=t, fill="black", font=('Helvetica %s bold', fontSize))
-
-# Tkinter initialization end -------------------------------------
+#Added this so closing the window doesn't crash the program
+window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
 
 
-
-
-def draw(): # EVERTHING that needs to be drawn goes in here
-
+while (stopped == False): # stopped is just an arbitrary ending condition
     canvas.delete("all")
+    sleep(0.1)
+
 
 
     #Some examples:
@@ -51,15 +27,4 @@ def draw(): # EVERTHING that needs to be drawn goes in here
 
 
 
-while (stopped == False): # stopped is just an arbitrary ending condition
-
-    sleep(0.1)
-
-
-
-    #your code goes mostly here
-
-
-
-    draw()
     window.update()
