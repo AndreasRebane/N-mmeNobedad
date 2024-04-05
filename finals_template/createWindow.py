@@ -1,12 +1,17 @@
 from tkinter import *
 
-windowHeight = 500
-windowWidth = 800
+# Initializing tkinter window-------------------------------------
+window=Tk()
+canvas=Canvas()
+def create_window(windowHeight: int = 500, windowWidth: int = 800, tile_size: int = 25):
+    global window, canvas
 
-TILE_SIZE = 25
-
-grid_width = windowWidth // TILE_SIZE
-grid_height = windowHeight // TILE_SIZE
+    grid_width = windowWidth // tile_size
+    grid_height = windowHeight // tile_size
+    window.title("Window")
+    window.geometry(f"{windowWidth}x{windowHeight}")
+    canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
+    canvas.grid(columnspan=grid_height, rowspan=grid_width)
 
 
 class Table:
@@ -24,18 +29,6 @@ class Table:
                  
                 self.entry.grid(row=row, column=collumn)
                 self.entry.insert(END, data[row][collumn])
- 
-
-
-
-
-# Initializing tkinter window-------------------------------------
-
-window=Tk()
-window.title("Window")
-window.geometry(f"{windowWidth}x{windowHeight}")
-canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
-canvas.grid(columnspan=grid_height, rowspan=grid_width)
 
 
 
