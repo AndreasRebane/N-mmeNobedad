@@ -6,16 +6,18 @@ class hotelInfo:
     roomCounter = 0
 
 class roomData:
-    def __init__(self, rG, nP) -> None:
-        hotelInfo.roomCounter = hotelInfo.roomCounter + 1
-        self.roomNumber = hotelInfo.roomCounter
-        self.roomCategory = roomCategoryList[rG]
-        self.dayPrice = nP
-        pass
     roomNumber = 0
     roomCategory = roomCategoryList[0]
     roomCost = 0
-    bookData = {0: {"startDate": "01.01.2000", "endDate": "01.01.2000", "customer": "customerName", "totalCost": 0}}
+    bookData = {0: {"startDate": 1, "endDate": 2, "customer": "customerName", "totalCost": 0}}
+    def __init__(self, rG, nP) -> None:
+        if (self.bookData.keys[0]["startDate"] == 1):
+            self.bookData.clear()
+        hotelInfo.roomCounter = hotelInfo.roomCounter + 1
+        self.roomNumber = hotelInfo.roomCounter
+        self.roomCategory = roomCategoryList[rG]
+        self.roomCost = nP
+        pass
 
 
 defaultRoom = roomData(1, 90)
@@ -32,7 +34,7 @@ def getRoomInstance(roomNumber):
                 return room
         return -1
 
-def bookRoom(roomNumber, customerName, bookingBeginDate, bookingEndDate):
+def bookRoom(roomNumber, customerName, bookingBeginDate = 1, bookingEndDate = 2):
     roomInstance = getRoomInstance(roomNumber)
     if (roomInstance == -1): 
         print("Room doesn't exist")
@@ -43,8 +45,16 @@ def bookRoom(roomNumber, customerName, bookingBeginDate, bookingEndDate):
         start = roomInstance.bookData[x]["startDate"]
         end = roomInstance.bookData[x]["endDate"]
 
-        
-        print(end)
+        if (bookingBeginDate > start and bookingBeginDate < end):
+            print("Date is already booked")
+            return 0
+    
+        roomInstance.bookData = {roomInstance.bookData.__len__()+1: {"startDate": bookingBeginDate, "endDate": bookingEndDate, "customer": customerName, "totalCost": (bookingEndDate-bookingBeginDate)*roomInstance.roomCost}}
+
+def listAllBookings():
+    for x in allRooms:
+        for y in x.bookData:
+            print(x.bookData[y]["totalCost"])
 
     
     
