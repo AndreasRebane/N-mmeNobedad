@@ -1,36 +1,31 @@
 from tkinter import *
 
 windowHeight = 500
-windowWidth = 500
+windowWidth = 800
+
+TILE_SIZE = 25
+
+grid_width = windowWidth // TILE_SIZE
+grid_height = windowHeight // TILE_SIZE
 
 
+class Table:
 
-class button:
-    list = []
+    def __init__(self, data):
 
-    def on_press(self, event):
-        print("aghhhhhhh")
-        self.pressed = True
+        total_rows = len(data)
+        total_columns = len(data[0])
 
-    def on_release(self, event):
-        print("aghhhhhhh")
-        self.pressed = False
+        for row in range(total_rows):
+            for collumn in range(total_columns):
+                 
+                width = 10
+                self.entry = Entry(canvas, width=width, fg='blue', font=('Arial',16,'bold'))
+                 
+                self.entry.grid(row=row, column=collumn)
+                self.entry.insert(END, data[row][collumn])
+ 
 
-    def __init__(self, x, y, w, h, color):
-        self.x = x
-        self.y = y
-        self.button = Button(window, height=h, width=w, bg=color, image=photoimage)
-        self.button.bind("<ButtonPress>", self.on_press)
-        self.button.bind("<ButtonRelease>", self.on_release)
-        self.pressed = False
-
-
-    
-        button.list.append(self)
-
-    def place(self):
-        self.pressed = False
-        self.button.place(x=self.x, y=self.y)
 
 
 
@@ -40,10 +35,9 @@ window=Tk()
 window.title("Window")
 window.geometry(f"{windowWidth}x{windowHeight}")
 canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
-canvas.grid()
+canvas.grid(columnspan=grid_height, rowspan=grid_width)
 
-photo = PhotoImage("amogus.png") 
-photoimage = photo.subsample(3, 3) 
+
 
 def draw_rectangle(x, y, width, height, color): # X, Y --> UPPER-LEFT corner of the rectangle
     canvas.create_rectangle(x, y, (x+width), (y+height), fill=color, outline="black")
