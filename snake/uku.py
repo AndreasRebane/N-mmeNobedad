@@ -11,10 +11,12 @@ score = 0
 apple = True
 x_head = window_width // 2
 y_head = window_height // 2
-x_pos = 0
+x_pos = 1
 y_pos = 0
 x_apple = 0
 y_apple = 0
+snake_body = [[]]
+snake_tail= False
 
 
 def key_input(event):
@@ -33,28 +35,43 @@ def key_input(event):
         y_pos = 1
     elif event.keysym == "Escape":
         close()
-    
-window.bind('<Key>', key_input)
 
 def close():
     window.destroy()
 
-def create_snake(x1: int = 0, y1: int = 0):
-    canvas.create_rectangle(x1, y1, (x1+block_size), (y1+block_size), fill="green", outline="black")
+def create_snake():
+    global snake_body, snake_tail
+    if not snake_tail:
+        snake_body.pop(0)
+        snake_body.append([x_head, y_head])
+    else:
+        snake_body.append([x_head, y_head])
+        snake_tail = False
+    
+    for part in snake_body:
+        x_cor, y_cor = part
+        canvas.create_rectangle(x_cor, y_cor, (x_cor+block_size), (y_cor+block_size), fill="green", outline="black")
+
+def check_snake_collisions():
+    global x_head, y_head, snake_body
+    
+    if [x_head, y_head] in snake_body:
+        close()
 
 def snake_move():
-    global x_head, y_head
+    global x_head, y_head, snake_tail
 
     x_head = x_head + (x_pos*block_size)
     y_head = y_head + (y_pos*block_size)
+    check_snake_collisions()
     if 0 - block_size < x_head < window_width + block_size and 0 - block_size < y_head < window_height + block_size:
-        create_snake(x_head, y_head)
+        create_snake()
         sleep(.1)
     else:
         close()
 
 def snake_update():
-    global x_head, y_head, apple, score
+    global x_head, y_head, apple, score, snake_tail
     create_apple(apple)
     snake_move()
     if x_head == x_apple and y_head == y_apple:
@@ -62,7 +79,7 @@ def snake_update():
         score += 10
         print(f"Score: {score}")
         apple = True
-
+        snake_tail = True
 
 def create_apple(create):
     global x_apple, y_apple, apple
@@ -72,23 +89,20 @@ def create_apple(create):
         apple = False
     canvas.create_rectangle(x_apple, y_apple, (x_apple+block_size), (y_apple+block_size), fill="red", outline="black")
     sleep(.1)
-    
-
-window.title("Snake")
-window.geometry(f"{window_height}x{window_width}")
-canvas = Canvas(window, width=window_width, height=window_height, bg="gray50")
-canvas.grid()
 
 def main():
+    global canvas
+    window.title("Snake")
+    window.geometry(f"{window_height}x{window_width}")
+    canvas = Canvas(window, width=window_width, height=window_height, bg="gray50")
+    canvas.grid()
+    window.bind('<Key>', key_input)
     while(snake_go):
         canvas.delete("all")
 
         snake_update()
 
         window.update()
-        pass
         
-        
-
 if __name__ == "__main__":
     main()
