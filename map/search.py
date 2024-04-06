@@ -29,9 +29,26 @@ oppehoone5 = placeInfo(0, 0, ["study building 5", "uo5"], "õppehoone 5", ["meha
 oppehoone6 = placeInfo(0, 0, ["study building 6", "uo6"], "õppehoone 6",["avatud ülikool", "open university", "kohvik", "cafe", "üliõpilasesindus (II korrus)", "student council (2nd floor)", "üliõpilas organisatisoon aiesec", "student organisation aiesec", "üliõpilasorganisatsioon  best-estonia", "student organization best-estonia"])
 oppehoone7 = placeInfo(0, 0, ["study building 7", "uo7"], "õppehoone 7",["energeetika teaduskond", "faculty of power engineering", "rektoraat", "rectors' office", "nõukogu saal", "university council hall "])
 loodusteadustemaja = placeInfo(0,0, ["building of natural scinece", "sci"], "loodusteaduste maja", ["matemaatika-loodusteaduskond", "faculty of science"])
+uliopilaselamu1 = placeInfo(0, 0, ["student hostel 1", "do1"], "üliõpilaselamu 1", [""])
+uliopilaselamu2 = placeInfo(0, 0, ["student hostel 2", "do2"], "üliõpilaselamu 2", [""])
+uliopilaselamu3 = placeInfo(0, 0, ["student hostel 3", "do3"], "üliõpilaselamu 3", [""])
+pereuhiselamu = placeInfo(0, 0, ["family hostel ", "do4"], "pereühiselamu", [""])
+academichostel = placeInfo(0, 0, ["academic hostel ", "hos"], "pereühiselamu", [""])
+uliopilaselamu11 = placeInfo(0, 0, ["student hostel 11", "do7"], "üliõpilaselamu 11", [""])
+uliopilaselamu4d = placeInfo(0, 0, ["student hostel 4d", "do6"], "üliõpilaselamu 4d", ["ttü üliõpilasküla", "student village of tut"])
+itmaja = placeInfo(0, 0, ["it building", "mek"], "it maja", ["infotehnoloogia teaduskond", "faculty of information technology", "ttü it täiendõppekeskus", "it further education center of tut", "kohvik", "cafe"])
+ehitusteaduskonnalaborihoone = placeInfo(0, 0, ["laboratory builsing of civil engineering", "con"], "ehitusteaduskonna laborihoone", [""])
+itkolledz = placeInfo(0, 0, ["it college", "ico"], "it kolledž", [""])
+tehnoloogiapark = placeInfo(0, 0, ["technology park", "itc"], "tehnoloogiapark", [""])
+kuberneetikamaja = placeInfo(0, 0, ["building of cybernetics", "cyb"], "küberneetikamaja", ["ttü küberneetika instituut", "institute of cybernetics at tut", "ttü meresüsteemida instituut", "institute of marine systems at tut"])
+puidumaja = placeInfo(0, 0, ["building of woodworking", "tim"], "puidumaja", ["puidutöötlemise õppetool", "chair of woodworking"])
+staadion = placeInfo(0, 0, ["stadium", "sta"], "staadion", [""])
+tekstiilimaja = placeInfo(0, 0, ["textile technology building", "tex"], "tekstiilimaja", ["disaini lektoraat", "chair of design", "tekstiilitehnoloogia õppetool", "chair of textile technology"])
+spordikeskus = placeInfo(0, 0, ["sports center", "so1"], "spordikeskus", [""])
+oppehoone10 = placeInfo(0, 0, ["study buoilding 10", "uo7"], "õppehoone 10", ["majandusteaduskond", "tallinn school of economics and bussiness administration", "sotsiaalteaduskond", "faculty of social sciences", "ttü majandusteaduskonna koolituskeskus", "center for economic education of faculty of economics and bussiness administration at tut", "keeltekeskus", "language center", "söökla", "cafeteria", "postkontor ja meened", "post office and souvenirs", "swedbanki kontor", "swedbank branch", "lillepood", "florist"])
 
 global buildingList
-buildingList = [oppehoone1, oppehoone2, oppehoone3, oppehoone4, oppehoone5]
+buildingList = [oppehoone1, oppehoone2, oppehoone3, oppehoone4, oppehoone5, oppehoone6, oppehoone7, loodusteadustemaja, uliopilaselamu1, uliopilaselamu2, uliopilaselamu3, pereuhiselamu, academichostel, uliopilaselamu11, uliopilaselamu4d, itmaja, ehitusteaduskonnalaborihoone, itkolledz, tehnoloogiapark, kuberneetikamaja, puidumaja, staadion, tekstiilimaja, spordikeskus, oppehoone10]
 
 
 def findClosestMatch(searchString: str):
