@@ -1,4 +1,5 @@
 from search import *
+from time import sleep
 
 #global userInputData KASUTATE ET SAADA START AND END LOCATIONI
 
@@ -39,6 +40,8 @@ def searchForLocation():
     print(userInputData.yStartPos)
     print(userInputData.xEndPos)
     print(userInputData.yEndPos)
+
+    sleep(0.5)
         
 def peidetudLeiaHooneID(result: list):
     if (len(result) == 0):
@@ -55,7 +58,3 @@ def peidetudLeiaHooneID(result: list):
     print("\n" * 2)
     inputID = int(input("ID:"))
     return inputID
-
-
-
-searchForLocation()

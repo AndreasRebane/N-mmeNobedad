@@ -4,7 +4,11 @@ from random import randint, choice # choice on väga kasulik, kui on vaja valida
 from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / writeToFile(text, line_number)
 from tkinter import *
 from PIL import Image,ImageTk
+from locationSearch import *
 
+
+
+searchForLocation()
 
 windowHeight = 800
 windowWidth = 1000
@@ -64,8 +68,6 @@ canvas.bind('<ButtonPress-1>', lambda event: canvas.scan_mark(event.x, event.y))
 canvas.bind("<B1-Motion>", lambda event: canvas.scan_dragto(event.x, event.y, gain=1))
 canvas.bind("<ButtonPress-1>", scroll_start)
 canvas.bind("<B1-Motion>", scroll_move)
-
-
 
 draw_circle(120, 150, 20, "red")
 
