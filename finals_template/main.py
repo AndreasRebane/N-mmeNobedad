@@ -16,11 +16,21 @@ while (stopped == False):
     canvas.delete("all")
     sleep(0.1)
 
-    data = [("Rebane", "12", "13", "sandworm"), ("Uku", "12", "13", "bookworm")]
-    table = Table(data)
-    updateWindow()
+    #data = [("Rebane", "12", "13", "sandworm"), ("Uku", "12", "13", "bookworm")]
+    #table = Table(data)
+    #updateWindow()
     #Some examples:
-    draw_rectangle(0, 0, 100, 100, "blue")
-    draw_circle(120, 150, 20, "red")
-    draw_text(120, 180, "Näide", 20)
+    #draw_rectangle(0, 0, 100, 100, "blue")
+    #draw_circle(120, 150, 20, "red")
+    #draw_text(120, 180, "Näide", 20)
+
+
+
+
+
+
+
+
+
+    
     updateWindow()
