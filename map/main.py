@@ -57,10 +57,13 @@ def scroll_move(event):
 
 
 def do_zoom(event):
+    return
+    
     x = canvas.canvasx(event.x)
     y = canvas.canvasy(event.y)
     factor = 1.001 ** event.delta
     canvas.scale(ALL, x, y, factor, factor)
+    #canvas.scale(ALL, x, y, factor, factor)
 
 
 canvas.bind("<MouseWheel>", do_zoom)
