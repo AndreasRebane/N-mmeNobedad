@@ -52,13 +52,24 @@ def findPathCoords():
     pathCoords = []
     keepSearching = True
 
-    while(keepSearching == True):
-        for coord in coordinates:
-            len = sqrt((coord[0] - endPos[0])**2 + (coord[1] - endPos[1])**2)
-            if len < 10: #this dumb, me fix later (possible no coords fount -> big bad)
-                pathCoords.append[coord]
+    
+    for coord in coordinates:
+        len = sqrt((coord[0] - startPos[0])**2 + (coord[1] - startPos[1])**2)
+        if len < 10: #this dumb, me fix later (possible no coords fount -> big bad)
+            pathCoords.append[coord]
 
-        for coord in pathCoords:
+
+    lastLen = 0
+    coordinate = endPos
+
+    while(keepSearching == True):
+
+        for pathCoord in pathCoords:
+            len = sqrt((pathCoord[0] - coordinate[0])**2 + (pathCoord[1] - coordinate[1])**2)
+
+            if len < lastLen:
+                temp_coordinate = pathCoord
+                lastLen = len
 
 
 
