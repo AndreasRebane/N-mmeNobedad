@@ -5,10 +5,11 @@ from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / 
 from tkinter import *
 from PIL import Image,ImageTk
 from locationSearch import *
+from pathfinding import *
 
 
+locations = searchForLocation()
 
-searchForLocation()
 
 windowHeight = 800
 windowWidth = 1000
