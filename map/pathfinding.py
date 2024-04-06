@@ -51,7 +51,7 @@ def readCoordinatesFromFile():
 def findPathCoords():
     global startPos
     pathCoords = []
-    lastLen = 0
+    lastLen = 99999
 
     while startPos != endPos:
         print(startPos)
@@ -70,7 +70,10 @@ def findPathCoords():
                         window.update()
                         lastLen = len
 
-        pathCoord = []
+        pathCoords = []
+        lastLen = 99999
+
+
 
 
 
