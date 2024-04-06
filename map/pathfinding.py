@@ -1,10 +1,8 @@
 from time import sleep
 from math import floor, ceil, sqrt # need on ümardamiseks kasulikud
 from random import randint, choice # choice on väga kasulik, kui on vaja valida suvaline element listist
-from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / writeToFile(text, line_number)
 from tkinter import *
 from PIL import Image,ImageTk
-import re
 
 
 windowHeight = 800
@@ -57,18 +55,18 @@ def findPathCoords():
         print(startPos)
         #print(endPos)
         for coord in coordinates:
-            len = sqrt((coord[0] - startPos[0])**2 + (coord[1] - startPos[1])**2)
-            if len < 10: #this dumb, me fix later (possible no coords fount -> big bad)
+            length = sqrt((coord[0] - startPos[0])**2 + (coord[1] - startPos[1])**2)
+            if length < 30: #this dumb, me fix later (possible no coords fount -> big bad)
                 pathCoords.append(coord)
 
         for pathCoord in pathCoords:
-                    len = sqrt((pathCoord[0] - endPos[0])**2 + (pathCoord[1] - endPos[1])**2)
+                    length = sqrt((pathCoord[0] - endPos[0])**2 + (pathCoord[1] - endPos[1])**2)
 
-                    if len < lastLen:
+                    if length < lastLen:
                         startPos = pathCoord
-                        draw_circle(startPos[0], startPos[1], 1, "red")
+                        draw_circle(startPos[0], startPos[1], 2, "red")
                         window.update()
-                        lastLen = len
+                        lastLen = length
 
         pathCoords = []
         lastLen = 99999
@@ -82,43 +80,29 @@ def findPathCoords():
 def draw_circle(x, y, radius, color): # X, Y --> CENTER of the circle
     canvas.create_oval(x-radius, y-radius, x+radius, y+radius, fill=color)
 
-
-def getCoordinates(event):
-    global lineNum, startPos, endPos
-    x = event.x
-    y = event.y
-
-
-    draw_circle(x, y, 1, "red")
-
-    match(lineNum):
-        case 0:
-            startPos = [event.x, event.y]
-            print(startPos)
-        case 1:
-            endPos = [event.x, event.y]
-            print(endPos)
-            findPathCoords()
-            
-    lineNum += 1
     
-
-
-
 
 
 
 #canvas.bind('<ButtonPress-1>', lambda event: canvas.scan_mark(event.x, event.y))
 #canvas.bind("<B1-Motion>", lambda event: canvas.scan_dragto(event.x, event.y, gain=1))
-canvas.bind("<ButtonPress-1>", getCoordinates)
+#canvas.bind("<ButtonPress-1>", getCoordinates)
 #canvas.bind("<B1-Motion>", scroll_move)
 
 
 
-readCoordinatesFromFile()
 
-while (stopped == False):
-    sleep(0.01)
+def draw_path(_startX, _startY, _endX, _endY):
+    global startPos, endPos
+
+    startPos = [_startX, _startY]
+    endPos = [_endX, _endY]
+
+    readCoordinatesFromFile()
+    findPathCoords()
+
+    while (stopped == False):
+        sleep(0.01)
 
 
-    window.update()
+        window.update()
