@@ -59,20 +59,8 @@ def findPathCoords():
 
 
 
-
-
-
 def draw_circle(x, y, radius, color): # X, Y --> CENTER of the circle
     canvas.create_oval(x-radius, y-radius, x+radius, y+radius, fill=color)
-
-    
-
-
-
-#canvas.bind('<ButtonPress-1>', lambda event: canvas.scan_mark(event.x, event.y))
-#canvas.bind("<B1-Motion>", lambda event: canvas.scan_dragto(event.x, event.y, gain=1))
-#canvas.bind("<ButtonPress-1>", getCoordinates)
-#canvas.bind("<B1-Motion>", scroll_move)
 
 
 
@@ -94,12 +82,6 @@ def draw_path(_startX, _startY, _endX, _endY):
 
     stopped = False # the ending condition for the whole program
     window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
-
-
-
-
-
-
 
 
     global startPos, endPos
