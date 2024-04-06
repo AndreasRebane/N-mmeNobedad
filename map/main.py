@@ -34,8 +34,6 @@ stopped = False
 window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
 
 
-
-
 def draw_rectangle(x, y, width, height, color): # X, Y --> UPPER-LEFT corner of the rectangle
     canvas.create_rectangle(x, y, (x+width), (y+height), fill=color, outline="black")
 
