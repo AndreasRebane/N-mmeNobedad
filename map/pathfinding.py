@@ -41,7 +41,7 @@ def findPathCoords():
         #print(endPos)
         for coord in coordinates:
             length = sqrt((coord[0] - startPos[0])**2 + (coord[1] - startPos[1])**2)
-            if length < 5: #this dumb, me fix later (possible no coords fount -> big bad)
+            if length < 7: #this dumb, me fix later (possible no coords fount -> big bad)
                 pathCoords.append(coord)
 
         for pathCoord in pathCoords:
