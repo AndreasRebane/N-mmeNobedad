@@ -12,21 +12,6 @@ tile_size = 25
 
 # Initializing tkinter window-------------------------------------
 
-window=Tk()
-canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
-img= ImageTk.PhotoImage(Image.open("map/map.png"))
-canvas.create_image(0,0,anchor=NW,image=img)
-canvas.pack(fill=BOTH, expand=YES)
-
-grid_width = windowWidth // tile_size
-grid_height = windowHeight // tile_size
-window.title("Window")
-window.geometry(f"{windowWidth}x{windowHeight}")
-
-
-stopped = False # the ending condition for the whole program
-window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
-
 
 lineNum = 0
 startPos = []
@@ -93,6 +78,30 @@ def draw_circle(x, y, radius, color): # X, Y --> CENTER of the circle
 
 
 def draw_path(_startX, _startY, _endX, _endY):
+    global window, canvas
+    
+    window=Tk()
+    canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
+    img= ImageTk.PhotoImage(Image.open("map/map.png"))
+    canvas.create_image(0,0,anchor=NW,image=img)
+    canvas.pack(fill=BOTH, expand=YES)
+
+    grid_width = windowWidth // tile_size
+    grid_height = windowHeight // tile_size
+    window.title("Window")
+    window.geometry(f"{windowWidth}x{windowHeight}")
+
+
+    stopped = False # the ending condition for the whole program
+    window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
+
+
+
+
+
+
+
+
     global startPos, endPos
 
     startPos = [_startX, _startY]
