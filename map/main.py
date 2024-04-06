@@ -73,7 +73,7 @@ canvas.bind("<B1-Motion>", scroll_move)
 
 draw_circle(120, 150, 20, "red")
 
-drawPath(locations.xStartPos, locations.yStartPos, locations.xEndPos, locations.yEndPos)
+draw_path(locations.xStartPos, locations.yStartPos, locations.xEndPos, locations.yEndPos)
 
 while (stopped == False):
     #canvas.delete("all")
