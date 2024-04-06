@@ -3,18 +3,26 @@ from math import floor, ceil # need on ümardamiseks kasulikud
 from random import randint, choice # choice on väga kasulik, kui on vaja valida suvaline element listist
 from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / writeToFile(text, line_number)
 from tkinter import *
-from PIL import ImageTk
+from PIL import Image,ImageTk
 
 
-windowHeight = 500
-windowWidth = 800
+windowHeight = 800
+windowWidth = 1000
 tile_size = 25
 
 
 # Initializing tkinter window-------------------------------------
 
 window=Tk()
+
+#img= PhotoImage(file='finals_template/amogus.png', master= window)
+#img_label= Label(window,image=img)
+#img_label.place(x=0, y=0)
+
 canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
+img= ImageTk.PhotoImage(Image.open("finals_template/map.png"))
+canvas.create_image(0,0,anchor=NW,image=img)
+canvas.pack(fill=BOTH, expand=YES)
 
 grid_width = windowWidth // tile_size
 grid_height = windowHeight // tile_size
@@ -25,6 +33,8 @@ window.geometry(f"{windowWidth}x{windowHeight}")
 stopped = False # the ending condition for the whole program
 window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
 
+
+#Add image to the Canvas Items
 
 
 class Table:
@@ -79,22 +89,24 @@ canvas.bind("<B1-Motion>", lambda event: canvas.scan_dragto(event.x, event.y, ga
 canvas.bind("<ButtonPress-1>", scroll_start)
 canvas.bind("<B1-Motion>", scroll_move)
 
-img= PhotoImage(file='finals_template/amogus.png', master= canvas)
-img_label= Label(canvas,image=img)
+
+
+draw_circle(120, 150, 20, "red")
 
 
 while (stopped == False):
-    canvas.delete("all")
+    #canvas.delete("all")
     sleep(0.01)
+
 
     #data = [("Rebane", "12", "13", "sandworm"), ("Uku", "12", "13", "bookworm")]
     #table = Table(data)
     #Some examples:
     #draw_rectangle(0, 0, 100, 100, "blue")
-    draw_circle(120, 150, 20, "red")
+
     #draw_text(120, 180, "Näide", 20)
 
-    #img_label.place(x=0, y=0)
 
-    canvas.grid(columnspan=grid_height, rowspan=grid_width)
+
+    #canvas.grid(columnspan=grid_height, rowspan=grid_width)
     window.update()
