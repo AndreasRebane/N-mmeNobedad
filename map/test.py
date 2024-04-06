@@ -1,3 +1,11 @@
-from search import findClosestMatch
+from search import *
 
-print(findClosestMatch("õppehoone 3"))
+
+
+
+
+for x in buildingList:
+    print(x.id)
+
+
+print(findClosestMatch("uo3"))
