@@ -1,5 +1,7 @@
 from search import *
 
+#global userInputData KASUTATE ET SAADA START AND END LOCATIONI
+
 class locationParameters:
     def __init__(self, __startX: int, __startY: int, __endX: int, __endY: int) -> None:
         self.xStartPos = __startX
@@ -31,7 +33,6 @@ def searchForLocation():
     
     buildInstance2 = getBuildingInstance(resultID2)
 
-    global userInputData
     userInputData = locationParameters(buildInstance2.xCordinate, buildInstance2.yCordinate, buildInstance1.xCordinate, buildInstance1.yCordinate)
 
     print(userInputData.xStartPos)
