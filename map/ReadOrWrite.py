@@ -1,4 +1,4 @@
-filename = 'saveFile.txt'
+filename = 'map/saveFile.txt'
 
 
 def readFromFile(line):
@@ -20,7 +20,7 @@ def writeToFile(text, line):
         data = file.readlines() 
     
     if (not data):
-        with open('saveFile.txt', 'a') as file:
+        with open(filename, 'a') as file:
             file.write(text) 
 
     else: # if the file is empty then - instead of replacing a line - it appends to the beginning
