@@ -5,10 +5,11 @@ from ReadOrWrite import readFromFile, writeToFile # readFromFile(line_number) / 
 from tkinter import *
 from PIL import Image,ImageTk
 from locationSearch import *
+from pathfinding import *
 
 
+locations = searchForLocation()
 
-searchForLocation()
 
 windowHeight = 800
 windowWidth = 1000
@@ -57,10 +58,13 @@ def scroll_move(event):
 
 
 def do_zoom(event):
+    return
+    
     x = canvas.canvasx(event.x)
     y = canvas.canvasy(event.y)
     factor = 1.001 ** event.delta
     canvas.scale(ALL, x, y, factor, factor)
+    #canvas.scale(ALL, x, y, factor, factor)
 
 
 canvas.bind("<MouseWheel>", do_zoom)
