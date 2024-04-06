@@ -18,9 +18,8 @@ class placeInfo:
     id = totalBuildings.count
     totalBuildings.count = totalBuildings.count + 1
 
-def main():
-    õppehoone1 = placeInfo(0, 0, ["study building 1"], "õppehoone 1", ["aula", "main hall", "infolaud", "garderoob", "colakroom", "söökla", "cafeteria", "hoiukarp", "lockers", "seb pangaautomaat", "atm(seb)", "telefoniautomaadid", "pay phones", "turundus- ja kommunikatsiooni osakond", "marketing and communications office"])
-    mainBuildings = [õppehoone1]
 
-if "name" == "__main__":
-    main()
+oppehoone1 = placeInfo(0, 0, ["study building 1"], "õppehoone 1", ["aula", "main hall", "infolaud", "garderoob", "colakroom", "söökla", "cafeteria", "hoiukarp", "lockers", "seb pangaautomaat", "atm(seb)", "telefoniautomaadid", "pay phones", "turundus- ja kommunikatsiooni osakond", "marketing and communications office"])
+
+buildingsList = {oppehoone1}
+
