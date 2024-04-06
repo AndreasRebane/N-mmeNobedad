@@ -19,11 +19,6 @@ class placeInfo:
     totalBuildings.count = totalBuildings.count + 1
 
 
-<<<<<<< HEAD
-oppehoone1 = placeInfo(0, 0, ["study building 1"], "õppehoone 1", ["aula", "main hall", "infolaud", "garderoob", "colakroom", "söökla", "cafeteria", "hoiukarp", "lockers", "seb pangaautomaat", "atm(seb)", "telefoniautomaadid", "pay phones", "turundus- ja kommunikatsiooni osakond", "marketing and communications office"])
-
-buildingsList = {oppehoone1}
-=======
 def main():
     global buildingList
     oppehoone1 = placeInfo(0, 0, ["study building 1", "uo1"], "õppehoone 1", ["aula", "main hall", "infolaud", "garderoob", "colakroom", "söökla", "cafeteria", "hoiukarp", "lockers", "seb pangaautomaat", "atm(seb)", "telefoniautomaadid", "pay phones", "turundus- ja kommunikatsiooni osakond", "marketing and communications office"])
@@ -33,5 +28,4 @@ def main():
     oppehoone5 = placeInfo(0, 0, ["study building 5", "uo5"], "õppehoone 5", ["mehaanikateaduskond", "faculty of mechanical engineering", "baltic tours'i kontor", "baltic tours travel agent", "5b. finants- ja haldusstruktuurid", "finance and administrative units"])
 
     buildingList = [oppehoone1, oppehoone2, oppehoone3, oppehoone4, oppehoone5]
->>>>>>> cf7da4065fd611e3be66340baa7b25e4be227d66
 
