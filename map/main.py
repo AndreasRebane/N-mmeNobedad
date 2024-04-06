@@ -14,13 +14,8 @@ tile_size = 25
 # Initializing tkinter window-------------------------------------
 
 window=Tk()
-
-#img= PhotoImage(file='finals_template/amogus.png', master= window)
-#img_label= Label(window,image=img)
-#img_label.place(x=0, y=0)
-
 canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
-img= ImageTk.PhotoImage(Image.open("finals_template/map.png"))
+img= ImageTk.PhotoImage(Image.open("map/map.png"))
 canvas.create_image(0,0,anchor=NW,image=img)
 canvas.pack(fill=BOTH, expand=YES)
 
@@ -30,28 +25,9 @@ window.title("Window")
 window.geometry(f"{windowWidth}x{windowHeight}")
 
 
-stopped = False # the ending condition for the whole program
+stopped = False
 window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
 
-
-#Add image to the Canvas Items
-
-
-class Table:
-
-    def __init__(self, data):
-
-        total_rows = len(data)
-        total_columns = len(data[0])
-
-        for row in range(total_rows):
-            for collumn in range(total_columns):
-                 
-                width = 10
-                self.entry = Entry(canvas, width=width, fg='blue', font=('Arial',16,'bold'))
-                 
-                self.entry.grid(row=row, column=collumn)
-                self.entry.insert(END, data[row][collumn])
 
 
 
@@ -103,7 +79,6 @@ while (stopped == False):
     #table = Table(data)
     #Some examples:
     #draw_rectangle(0, 0, 100, 100, "blue")
-
     #draw_text(120, 180, "Näide", 20)
 
 
