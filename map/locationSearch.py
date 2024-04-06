@@ -42,6 +42,7 @@ def searchForLocation():
     print(userInputData.yEndPos)
 
     sleep(0.5)
+    return userInputData
         
 def peidetudLeiaHooneID(result: list):
     if (len(result) == 0):
