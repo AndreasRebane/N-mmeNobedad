@@ -48,4 +48,8 @@ def findClosestMatch(searchString: str):
                     closestMachIDList.append(x.id)
     return closestMachIDList
 
-    
+def getBuildingInstance(id: int):
+    for x in buildingList:
+        if (id == x.id):
+            return x
+    return -1
