@@ -36,13 +36,17 @@ def findPathCoords():
     pathCoords = []
     lastLen = 99999
 
+
     while startPos != endPos:
-        print(startPos)
+        #print(startPos)
         #print(endPos)
+
         for coord in coordinates:
             length = sqrt((coord[0] - startPos[0])**2 + (coord[1] - startPos[1])**2)
-            if length < 7: #this dumb, me fix later (possible no coords fount -> big bad)
+            if length < 28: #this dumb, me fix later (possible no coords fount -> big bad)
                 pathCoords.append(coord)
+
+                
 
         for pathCoord in pathCoords:
                     length = sqrt((pathCoord[0] - endPos[0])**2 + (pathCoord[1] - endPos[1])**2)
@@ -55,6 +59,7 @@ def findPathCoords():
 
         pathCoords = []
         lastLen = 99999
+        xx = 1
 
 
 
