@@ -48,7 +48,7 @@ def findPathCoords():
                 if length < dynamic_len:
                     if not coord in oldPositions:
                         pathCoords.append(coord)
-            dynamic_len += 10
+            dynamic_len += 15
         dynamic_len = 15
 
         for pathCoord in pathCoords:
