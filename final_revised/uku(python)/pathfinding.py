@@ -93,9 +93,14 @@ def draw_path(_startX, _startY, _endX, _endY):
     window.title("Window")
     window.geometry(f"{windowWidth}x{windowHeight}")
 
-
     stopped = False # the ending condition for the whole program
-    window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True})) 
+    window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True}))
+
+    def stop(event):
+            window.withdraw()
+            window.destroy()
+
+    window.bind("<Escape>", stop)
 
 
     global startPos, endPos

@@ -18,16 +18,18 @@ class locationParameters:
 
 def searchForLocation():
     global userInputData
-    inputLocation = str(input("Sisesta lõppkoht:"))
-    resultID1 = peidetudLeiaHooneID(findClosestMatch(inputLocation))
+    #inputLocation = str(input("Sisesta lõppkoht:"))
+    #resultID1 = peidetudLeiaHooneID(findClosestMatch(inputLocation))
+    resultID1 = 10
 
     if (resultID1 == -1):
         return
 
     buildInstance1 = getBuildingInstance(resultID1)
 
-    startingLocationString = str(input("Sisesta algushoone:"))
-    resultID2 = peidetudLeiaHooneID(findClosestMatch(startingLocationString))
+    #startingLocationString = str(input("Sisesta algushoone:"))
+    #resultID2 = peidetudLeiaHooneID(findClosestMatch(startingLocationString))
+    resultID2 = 2
 
     if (resultID2 == -1):
         return
