@@ -12,7 +12,6 @@ tile_size = 25
 
 # Initializing tkinter window-------------------------------------
 
-
 lineNum = 0
 startPos = []
 endPos = []
@@ -33,13 +32,16 @@ def readCoordinatesFromFile():
     print(len(coordinates))
 
 def findPathCoords():
-    global startPos
+    global startPos, stopped
     pathCoords = []
     lastLen = 99999
     dynamic_len = 15
     oldPositions = [[]]
 
-    while startPos != endPos:
+
+
+
+    while startPos != endPos and not stopped:
         #print(startPos)
         #print(endPos)
         while pathCoords == []:
@@ -61,8 +63,8 @@ def findPathCoords():
                 startPos = endPos
                 print("Olete kohale jõudnud!")
                 break
-        if len(oldPositions) > 3:
-            oldPositions.pop(0)
+#        if len(oldPositions) > 3:
+#            oldPositions.pop(0)
         draw_circle(startPos[0], startPos[1], 2, "red")
         window.update()
         sleep(.2)
@@ -80,7 +82,7 @@ def draw_circle(x, y, radius, color): # X, Y --> CENTER of the circle
 
 
 def draw_path(_startX, _startY, _endX, _endY):
-    global window, canvas
+    global window, canvas, stopped
 
     window=Tk()
     canvas = Canvas(window, width=windowWidth, height=windowHeight, bg="white")
@@ -97,8 +99,9 @@ def draw_path(_startX, _startY, _endX, _endY):
     window.protocol("WM_DELETE_WINDOW", lambda: globals().update({'stopped': True}))
 
     def stop(event):
+            global stopped
             window.withdraw()
-            window.destroy()
+            stopped = True
 
     window.bind("<Escape>", stop)
 
@@ -116,6 +119,5 @@ def draw_path(_startX, _startY, _endX, _endY):
 
     while (stopped == False):
         sleep(0.01)
-
-
         window.update()
+    print("Program closed.")
